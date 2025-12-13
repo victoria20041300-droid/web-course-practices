@@ -1,0 +1,17 @@
+<div class="profile-card">
+  <h2>{{ user.name }}</h2>
+
+  <p><strong>ID:</strong> {{ user.id }}</p>
+
+  <p><strong>Status:</strong> {{ user.status }}</p>
+
+  <p><strong>City:</strong> {{ user.address.city }}</p>
+  <p><strong>Street:</strong> {{ user.address.street }}</p>
+
+  <h3>Hobbies ({{ getHobbiesCount() }}):</h3>
+  <ul>
+    <li *ngFor="let hobby of user.hobbies">
+      • {{ hobby }}
+    </li>
+  </ul>
+</div>
