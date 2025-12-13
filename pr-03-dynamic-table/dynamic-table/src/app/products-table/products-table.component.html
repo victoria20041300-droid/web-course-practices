@@ -1,0 +1,43 @@
+<table>
+  <thead>
+    <tr>
+      <th>Назва</th>
+      <th>Категорія</th>
+      <th>Ціна</th>
+      <th>Кількість на складі</th>
+      <th>В наявності</th>
+      <th>Статус ціни</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let p of products"
+        [ngStyle]="{ 'background-color': p.stockCount === 0 ? '#ffb3b3' : 'white' }">
+
+      <td>{{ p.name }}</td>
+      <td>{{ p.category }}</td>
+      <td>{{ p.price }}</td>
+      <td>{{ p.stockCount }}</td>
+
+      <td>
+        <span *ngIf="p.stockCount > 0; else out">✅</span>
+        <ng-template #out>❌</ng-template>
+      </td>
+
+      <td [ngSwitch]="p.price">
+        <span *ngSwitchCase="true" [ngStyle]="{ display: p.price < 50 ? 'inline' : 'none' }">
+          Низька
+        </span>
+
+        <span *ngSwitchCase="true" [ngStyle]="{ display: p.price >= 50 && p.price <= 200 ? 'inline' : 'none' }">
+          Середня
+        </span>
+
+        <span *ngSwitchDefault>
+          Висока
+        </span>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
