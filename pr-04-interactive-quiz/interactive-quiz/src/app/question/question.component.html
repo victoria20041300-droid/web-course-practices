@@ -1,0 +1,12 @@
+<div *ngIf="question">
+  <p><strong>{{ question.text }}</strong></p>
+
+  <ul>
+    <li *ngFor="let option of question.options; let i = index"
+        (click)="selectAnswer(i)"
+        [style.backgroundColor]="showCorrect && i === question.correctIndex ? '#b6fcb6' : 'transparent'"
+        style="cursor: pointer; padding: 5px;">
+      {{ option }}
+    </li>
+  </ul>
+</div>
