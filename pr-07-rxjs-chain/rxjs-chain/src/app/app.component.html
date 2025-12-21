@@ -1,0 +1,16 @@
+<h2>Select user</h2>
+
+<button (click)="selectUser(1)">User 1</button>
+<button (click)="selectUser(2)">User 2</button>
+<button (click)="selectUser(3)">User 3</button>
+
+<hr />
+
+<h2>Posts of selected user</h2>
+
+<ul *ngIf="posts$ | async as posts">
+  <li *ngFor="let post of posts">
+    <strong>{{ post.title }}</strong>
+    <p>{{ post.body }}</p>
+  </li>
+</ul>
