@@ -1,0 +1,43 @@
+<h2>User form</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <!-- ===== Name ===== -->
+  <label>
+    Name:
+    <input formControlName="name" />
+  </label>
+
+  <!-- Помилки для name -->
+  <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+    <p *ngIf="form.get('name')?.errors?.['required']">
+      Name is required
+    </p>
+    <p *ngIf="form.get('name')?.errors?.['containsTest']">
+      Name must not contain word "test"
+    </p>
+  </div>
+
+  <!-- ===== Skills ===== -->
+  <div formArrayName="skills">
+    <h3>Skills</h3>
+
+    <div *ngFor="let skill of skills.controls; let i = index">
+      <input [formControlName]="i" placeholder="Skill" />
+      <button type="button" (click)="removeSkill(i)">Remove</button>
+
+      <!-- Помилка для skill -->
+      <div *ngIf="skill.touched && skill.invalid">
+        <p>Skill is required</p>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" (click)="addSkill()">Add skill</button>
+
+  <br /><br />
+
+  <button type="submit" [disabled]="form.invalid">
+    Submit
+  </button>
+</form>
