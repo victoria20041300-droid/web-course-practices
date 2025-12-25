@@ -1,0 +1,15 @@
+<h2>Filter pipe demo</h2>
+
+<input
+  type="text"
+  placeholder="Search by name..."
+  [(ngModel)]="searchText"
+/>
+
+<button (click)="addItem()">Add item</button>
+
+<ul>
+  <li *ngFor="let item of (items | filterByField:'name':searchText)">
+    {{ item.name }} ({{ item.category }})
+  </li>
+</ul>
